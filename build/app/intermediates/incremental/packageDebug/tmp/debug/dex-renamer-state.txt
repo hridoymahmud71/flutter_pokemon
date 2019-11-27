@@ -1,0 +1,4 @@
+#Wed Nov 27 16:35:06 BDT 2019
+base.0=H\:\\Hridoy\\flutter_pokemon\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
