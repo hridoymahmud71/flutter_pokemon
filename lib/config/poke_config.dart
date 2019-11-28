@@ -1,6 +1,7 @@
 class PokeConfig {
-  var _listing_url = "//pokeapi.co/api/v2/pokemon/";
-  var _placeholder_url = "//via.placeholder.com/";
+  var _listing_url = "https://pokeapi.co/api/v2/pokemon/";
+  var _placeholder_url = "https://via.placeholder.com/";
+  static int imageWidth = 250;
 
   static getListingUrl() => PokeConfig()._listing_url;
 

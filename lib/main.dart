@@ -11,6 +11,7 @@ class PokemonApp extends StatelessWidget {
         brightness: Brightness.dark,
         primaryColor: Colors.deepOrange[800],
         accentColor: Colors.greenAccent[600],
+        primaryColorDark: Colors.indigo,
         textTheme: TextTheme(
           headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
           title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),

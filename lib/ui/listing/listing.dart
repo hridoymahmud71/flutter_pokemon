@@ -8,19 +8,17 @@ import 'package:flutter_pokemon/models/pokemon_list.dart';
 
 import 'grid_item.dart';
 
-
 class Listing extends StatefulWidget {
-
   @override
   _ListingState createState() => _ListingState();
 }
 
 class _ListingState extends State<Listing> {
-
   PokemonList pokemonList;
   List<Results> itemList;
   int itemCount;
   final int crossAxisCount = 2;
+
   @override
   void initState() {
     super.initState();
@@ -29,24 +27,31 @@ class _ListingState extends State<Listing> {
 
   fetchPokemonList() async {
     var res = await http.get(PokeConfig.getListingUrl());
-    print(res.body);
+    //ssprint(res.body);
     var decodedJson = jsonDecode(res.body);
 
-    pokemonList = PokemonList.fromJson(decodedJson);
-    itemList =
-    pokemonList != null ? pokemonList.results : List<Results>();
-    int itemCount = itemList != null ? itemList.length :0;
+    setState(() {
+      pokemonList = PokemonList.fromJson(decodedJson);
+      itemList = pokemonList != null ? pokemonList.results : List<Results>();
+      itemCount = itemList != null ? itemList.length : 0;
+    });
+
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: itemCount,
-      itemBuilder: (BuildContext context, int position) {
-        return itemList != null ? GridItem(itemList[position].url) : GridItem(PokeConfig.getSingleUrl(0));
-      }, gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount:crossAxisCount),
-    );
+    return pokemonList == null
+        ? Center(child: CircularProgressIndicator())
+        : GridView.builder(
+            itemCount: itemCount,
+            itemBuilder: (BuildContext context, int position) {
+              return itemList != null
+                  ? GridItem(itemList[position].url)
+                  : GridItem(PokeConfig.getSingleUrl(0));
+            },
+            gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount),
+          );
   }
 }
-
